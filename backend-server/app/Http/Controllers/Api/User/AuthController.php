@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\User\LoginRequest;
+use App\Http\Requests\User\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -21,14 +22,38 @@ class AuthController extends Controller{
             ]);
         }
 
-        $token = $user->createToken('user-token')->plainTextToken;
+        return $this->makeToken($user);
+    }
 
-        // return AuthResource::make($user);
+    public function register(RegisterRequest $request){
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'password' => bcrypt($request->input('password')),
+        ]);
 
+        return $this->makeToken($user);
+    }
+
+
+    public function makeToken($user){
+        $token =  $user->createToken('user-token')->plainTextToken;
         return (new AuthResource($user))
             ->additional(['meta' => [
                 'token' => $token,
                 'token_type' => 'Bearer',
-        ]]);
+            ]]);
     }
+
+
+
+
+
+
+
+
+
+
+
 }
