@@ -13,7 +13,7 @@ Route::controller(AuthController::class)->group(function(){
 });
 
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:user-api')->group(function () {
 
     Route::controller(AuthController::class)->group(function(){
         Route::post('/logout', 'logout');
