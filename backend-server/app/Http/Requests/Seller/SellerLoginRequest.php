@@ -13,7 +13,7 @@ class SellerLoginRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class SellerLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'phone' => ['required','exists:sellers,phone'],
+            'password' => ['required'],
         ];
     }
 }
