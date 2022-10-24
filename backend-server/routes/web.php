@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+Route::get('/login', function () {
+    return send_ms('User Unautheticated', false, 401);
+})->name('login');

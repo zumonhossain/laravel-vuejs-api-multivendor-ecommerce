@@ -11,3 +11,13 @@ Route::controller(AuthController::class)->group(function(){
     Route::post('/register', 'register');
 
 });
+
+
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::controller(AuthController::class)->group(function(){
+        Route::post('/logout', 'logout');
+        Route::get('/me', 'user');
+    });
+
+});
