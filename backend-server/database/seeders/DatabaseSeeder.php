@@ -14,7 +14,15 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run(){
+
+        $this->call([
+            AdminTableSeeder::class,
+            SellerTableSeeder::class,
+        ]);
+
         \App\Models\User::factory(10)->create();
+        \App\Models\Brand::factory(20)->create();
+
 
         \App\Models\User::factory()->create([
             'name' => 'Test User',
@@ -22,12 +30,6 @@ class DatabaseSeeder extends Seeder
             'phone' => '01644954478',
             "isVerified" => 1,
             'password' => Hash::make('11111111'),
-        ]);
-
-
-        $this->call([
-            AdminTableSeeder::class,
-            SellerTableSeeder::class,
         ]);
 
 
