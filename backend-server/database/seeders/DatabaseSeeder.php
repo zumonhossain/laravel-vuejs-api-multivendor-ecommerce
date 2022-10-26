@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             AdminTableSeeder::class,
             SellerTableSeeder::class,
             DivisionSeeder::class,
+            DistrictSeeder::class,
         ]);
 
         \App\Models\User::factory(10)->create();
