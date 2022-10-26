@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminTableSeeder::class,
             SellerTableSeeder::class,
+            DivisionSeeder::class,
         ]);
 
         \App\Models\User::factory(10)->create();
