@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Admin\BrandResource;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,9 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+        $brands = Brand::paginate(10);
+        return  BrandResource::collection($brands);
     }
 
     /**
