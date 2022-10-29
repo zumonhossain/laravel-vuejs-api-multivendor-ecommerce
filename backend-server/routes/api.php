@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Admin\SliderController;
 use App\Http\Controllers\Api\Admin\BrandController;
 use App\Http\Controllers\Api\Admin\CategoryController;
 use App\Http\Controllers\Api\Admin\ProductController;
+use App\Http\Controllers\Api\Admin\DivisionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,5 @@ Route::prefix('v1')->group(function () {
     Route::get('brands', [BrandController::class, 'index']);
     Route::get('categories', [CategoryController::class, 'index']);
     Route::get('products', [ProductController::class, 'index']);
+    Route::get('divisions', [DivisionController::class, 'index']);
 });
