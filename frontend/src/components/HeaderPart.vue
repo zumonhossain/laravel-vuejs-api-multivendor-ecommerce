@@ -1,3 +1,10 @@
+<script setup>
+    function search(){
+        $(".header-form").toggleClass("active"),
+        $(".header-src").children(".fa-search").toggleClass("fa-times");
+    }
+</script>
+
 <template>
     <div>
         <div class="header-top">
@@ -25,11 +32,20 @@
                 <div class="header-content">
                     <div class="header-media-group">
                         <button class="header-user">
-                            <img src="@/assets/images/menu.png" alt="user" /></button><a href="index.html"><img
-                                src="@/assets/images/logo.png" alt="logo" /></a><button class="header-src"><i
-                                class="fas fa-search"></i></button>
+                            <img src="@/assets/images/menu.png" alt="user" />
+                        </button>
+
+                        <a href="index.html"><img src="@/assets/images/logo.png" alt="logo" /></a>
+
+                        <button class="header-src" @click="search">
+                            <i class="fas fa-search"></i>
+                        </button>
+
                     </div>
-                    <a href="index.html" class="header-logo"><img src="@/assets/images/logo.png" alt="logo" /></a>
+
+                    <a href="index.html" class="header-logo">
+                        <img src="@/assets/images/logo.png" alt="logo" />
+                    </a>
 
                     <form class="header-form">
                         <input type="text" placeholder="Search anything..." /><button>

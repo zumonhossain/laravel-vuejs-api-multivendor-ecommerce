@@ -63,10 +63,12 @@ $(window).on("scroll", function () {
   $(".coupon-btn").on("click", function () {
     $(this).hide(), $(".coupon-form").css("display", "flex");
   }),
+
   $(".header-src").on("click", function () {
-    $(".header-form").toggleClass("active"),
+      $(".header-form").toggleClass("active"),
       $(this).children(".fa-search").toggleClass("fa-times");
   }),
+
   $(".wish").on("click", function () {
     $(this).toggleClass("active");
   }),
