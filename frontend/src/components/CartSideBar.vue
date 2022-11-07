@@ -1,3 +1,15 @@
+<script setup>
+    const cartClose = () => {
+        $("body").css("overflow", "inherit"),
+        $(".cart-sidebar").removeClass("active"),
+        $(".backdrop").fadeOut();
+    }
+
+    const couponBtn = () => {
+        $(".coupon-btn").hide(), $(".coupon-form").css("display", "flex");
+    }
+</script>
+
 <template>
     <div>
         <aside class="cart-sidebar">
@@ -5,12 +17,14 @@
                 <div class="cart-total">
                     <i class="fas fa-shopping-basket"></i><span>total item (5)</span>
                 </div>
-                <button class="cart-close"><i class="icofont-close"></i></button>
+                <button class="cart-close" @click="cartClose">
+                    <i class="icofont-close"></i>
+                </button>
             </div>
             <ul class="cart-list">
                 <li class="cart-item">
                     <div class="cart-media">
-                        <a href="#"><img src="./assets/images/product/01.jpg" alt="product" /></a><button
+                        <a href="#"><img src="@/assets/images/product/01.jpg" alt="product"></a><button
                             class="cart-delete">
                             <i class="far fa-trash-alt"></i>
                         </button>
@@ -35,7 +49,7 @@
                 </li>
                 <li class="cart-item">
                     <div class="cart-media">
-                        <a href="#"><img src="./assets/images/product/02.jpg" alt="product" /></a><button
+                        <a href="#"><img src="@/assets/images/product/02.jpg" alt="product" /></a><button
                             class="cart-delete">
                             <i class="far fa-trash-alt"></i>
                         </button>
@@ -60,7 +74,7 @@
                 </li>
                 <li class="cart-item">
                     <div class="cart-media">
-                        <a href="#"><img src="./assets/images/product/03.jpg" alt="product" /></a><button
+                        <a href="#"><img src="@/assets/images/product/03.jpg" alt="product" /></a><button
                             class="cart-delete">
                             <i class="far fa-trash-alt"></i>
                         </button>
@@ -85,7 +99,7 @@
                 </li>
                 <li class="cart-item">
                     <div class="cart-media">
-                        <a href="#"><img src="./assets/images/product/04.jpg" alt="product" /></a><button
+                        <a href="#"><img src="@/assets/images/product/04.jpg" alt="product" /></a><button
                             class="cart-delete">
                             <i class="far fa-trash-alt"></i>
                         </button>
@@ -110,7 +124,7 @@
                 </li>
                 <li class="cart-item">
                     <div class="cart-media">
-                        <a href="#"><img src="./assets/images/product/05.jpg" alt="product" /></a><button
+                        <a href="#"><img src="@/assets/images/product/05.jpg" alt="product" /></a><button
                             class="cart-delete">
                             <i class="far fa-trash-alt"></i>
                         </button>
@@ -135,9 +149,10 @@
                 </li>
             </ul>
             <div class="cart-footer">
-                <button class="coupon-btn">Do you have a coupon code?</button>
+                <button class="coupon-btn" @click="couponBtn">Do you have a coupon code?</button>
                 <form class="coupon-form">
-                    <input type="text" placeholder="Enter your coupon code" /><button type="submit">
+                    <input type="text" placeholder="Enter your coupon code" />
+                    <button type="submit">
                         <span>apply</span>
                     </button>
                 </form>

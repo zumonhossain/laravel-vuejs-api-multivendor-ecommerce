@@ -21,28 +21,28 @@ $(window).on("scroll", function () {
     $(".nav-list li a").removeClass("active"), $(this).addClass("active");
   }),
   $(".header-cate, .cate-btn").on("click", function () {
-    $("body").css("overflow", "hidden"),
+      $("body").css("overflow", "hidden"),
       $(".category-sidebar").addClass("active"),
       $(".category-close").on("click", function () {
-        $("body").css("overflow", "inherit"),
+          $("body").css("overflow", "inherit"),
           $(".category-sidebar").removeClass("active"),
           $(".backdrop").fadeOut();
       });
   }),
   $(".header-user").on("click", function () {
-    $("body").css("overflow", "hidden"),
+      $("body").css("overflow", "hidden"),
       $(".nav-sidebar").addClass("active"),
       $(".nav-close").on("click", function () {
-        $("body").css("overflow", "inherit"),
+          $("body").css("overflow", "inherit"),
           $(".nav-sidebar").removeClass("active"),
           $(".backdrop").fadeOut();
       });
   }),
   $(".header-cart, .cart-btn").on("click", function () {
-    $("body").css("overflow", "hidden"),
+      $("body").css("overflow", "hidden"),
       $(".cart-sidebar").addClass("active"),
       $(".cart-close").on("click", function () {
-        $("body").css("overflow", "inherit"),
+          $("body").css("overflow", "inherit"),
           $(".cart-sidebar").removeClass("active"),
           $(".backdrop").fadeOut();
       });
@@ -61,7 +61,7 @@ $(window).on("scroll", function () {
     }
   ),
   $(".coupon-btn").on("click", function () {
-    $(this).hide(), $(".coupon-form").css("display", "flex");
+     $(this).hide(), $(".coupon-form").css("display", "flex");
   }),
 
   $(".header-src").on("click", function () {
