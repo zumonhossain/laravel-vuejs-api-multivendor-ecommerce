@@ -77,10 +77,10 @@
                                 <li>
                                     <router-link :to="{ name: 'user.profile' }" class="dropdown-item"> My Profile</router-link>
                                 </li>
-                                <!-- <li>
-                                    <router-link :to="{ name: 'user.order' }" class="dropdown-item"> My Order</router-link>
-                                </li>
                                 <li>
+                                    <router-link :to="{ name: 'user.orders' }" class="dropdown-item"> My Order</router-link>
+                                </li>
+                                <!-- <li>
                                     <router-link :to="{ name: 'user.wishlist' }" class="dropdown-item"> My Wishlist</router-link>
                                 </li> -->
                             </ul>

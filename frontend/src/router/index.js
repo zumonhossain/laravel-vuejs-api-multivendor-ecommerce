@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import { Index, Shop } from "@/views/pages";
 import { SellerPage, SellerStore } from "@/views/pages/seller";
 import { UserLogin, UserRegister } from "@/views/auth";
-import { MyProfile } from "@/views/user";
+import { MyProfile, MyOrderList } from "@/views/user";
 
 const routes = [
     {
@@ -52,6 +52,13 @@ const routes = [
       name:"user.profile", 
       component: MyProfile,
       meta: { title: "Profile" },
+    },
+
+    { 
+      path: "/my/orders", 
+      name:"user.orders", 
+      component: MyOrderList,
+      meta: { title: "Orders" },
     },
 
 ];
