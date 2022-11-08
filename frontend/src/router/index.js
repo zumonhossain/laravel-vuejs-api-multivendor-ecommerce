@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { Index, Shop } from "@/views/pages";
-import { SellerPage, SellerStore } from "@/views/pages/seller";
+import { SellerPage, SellerStore, SellerApply } from "@/views/pages/seller";
 import { UserLogin, UserRegister } from "@/views/auth";
 import { MyProfile, MyOrderList, MyWishlist } from "@/views/user";
 
@@ -11,23 +11,33 @@ const routes = [
       component: Index,
       meta: { title: "Home" },
     },
+
     {
       path: "/shop",
       name:"shop.page",
       component: Shop,
       meta: { title: "Shop" },
     },
+
     {
       path: "/seller-list",
       name:"seller.page",
       component: SellerPage,
       meta: { title: "Seller-List" },
     },
+
     {
       path: "/seller-store",
       name:"seller.store",
       component: SellerStore,
       meta: { title: "Seller-Store" },
+    },
+
+    {
+      path: "/seller-apply",
+      name:"seller.apply",
+      component: SellerApply,
+      meta: { title: "Seller-Apply" },
     },
 
 
