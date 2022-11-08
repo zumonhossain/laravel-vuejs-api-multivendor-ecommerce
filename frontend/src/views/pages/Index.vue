@@ -28,22 +28,18 @@ const newSlide = ref([Navigation]);
                 <div class="row">
                     <div class="col-lg-12 order-0 order-lg-1 order-xl-1">
                         <div class="home-grid-slider slider-arrow slider-dots">
-                            <swiper 
-                                :spaceBetween="30"
-                                :loop="true"
-                                :pagination="{
-                                    clickable: true,
-                                }"
-                                :autoplay="{
-                                    delay: 2000,
-                                }"
-                                :modules="modules"
-                                class="mySwiper"
-                            >
+                            <swiper :spaceBetween="30" :loop="true" :pagination="{
+                                clickable: true,
+                            }" :autoplay="{
+    delay: 2000,
+}" :modules="modules" class="mySwiper">
 
-                                <swiper-slide><a href="#"><img src="@/assets/images/banner/01.jfif" alt="" /></a></swiper-slide>
-                                <swiper-slide><a href="#"><img src="@/assets/images/banner/02.jfif" alt="" /></a></swiper-slide>
-                                <swiper-slide><a href="#"><img src="@/assets/images/banner/03.jfif" alt="" /></a></swiper-slide>
+                                <swiper-slide><a href="#"><img src="@/assets/images/banner/01.jfif" alt="" /></a>
+                                </swiper-slide>
+                                <swiper-slide><a href="#"><img src="@/assets/images/banner/02.jfif" alt="" /></a>
+                                </swiper-slide>
+                                <swiper-slide><a href="#"><img src="@/assets/images/banner/03.jfif" alt="" /></a>
+                                </swiper-slide>
                             </swiper>
                         </div>
                     </div>
@@ -222,13 +218,15 @@ const newSlide = ref([Navigation]);
                                     <label class="label-text sale">sale</label>
                                 </div>
                                 <button class="product-wish wish">
-                                    <i class="fas fa-heart"></i></button><a class="product-image"
-                                    href="product-video.html"><img src="@/assets/images/product/01.jpg"
-                                        alt="product" /></a>
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <router-link :to=" { name: 'product.details' } " class="product-image">
+                                    <img src="@/assets/images/product/01.jpg" alt="product" />
+                                </router-link>
                             </div>
                             <div class="product-content">
                                 <h6 class="product-name">
-                                    <a href="product-video.html">Products Name</a>
+                                    <router-link :to=" { name: 'product.details' } ">Products Name</router-link>
                                 </h6>
                                 <h6 class="product-price">
                                     <del>$34</del><span>$28<small></small></span>
@@ -1033,18 +1031,10 @@ const newSlide = ref([Navigation]);
                 <div class="row">
                     <div class="col">
                         <ul class="new-slider slider-arrow">
-                            <swiper
-                                :slidesPerView="4"
-                                :slidesPerGroup="4"
-                                :loop="true"
-                                :autoplay="{
-                                    delay: 2500,
-                                }"
-                                :loopFillGroupWithBlank="true"
-                                :navigation="true"
-                                :modules="newSlide"
-                                class="mySwiper"
-                            >
+                            <swiper :slidesPerView="4" :slidesPerGroup="4" :loop="true" :autoplay="{
+                                delay: 2500,
+                            }" :loopFillGroupWithBlank="true" :navigation="true" :modules="newSlide"
+                                class="mySwiper">
                                 <swiper-slide>
                                     <li>
                                         <div class="product-card">
