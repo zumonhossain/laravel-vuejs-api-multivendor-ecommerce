@@ -1,17 +1,38 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Index from "../views/pages/Index.vue";
+import { Index, Shop, SellerPage, SellerStore } from "@/views/pages";
 import { UserLogin } from "@/views/auth";
 import { UserRegister } from "@/views/auth";
 
 const routes = [
-
     {
       path: "/",
       name:"index.page",
       component: Index,
       meta: { title: "Home" },
     },
+    {
+      path: "/shop",
+      name:"shop.page",
+      component: Shop,
+      meta: { title: "Shop" },
+    },
+    {
+      path: "/seller-list",
+      name:"seller.page",
+      component: SellerPage,
+      meta: { title: "Seller-List" },
+    },
 
+    {
+      path: "/seller-store",
+      name:"seller.store",
+      component: SellerStore,
+      meta: { title: "Seller-Store" },
+    },
+
+
+
+    //User Routes
     { path: "/auth/login",
       name:"user.login", 
       component: UserLogin,
