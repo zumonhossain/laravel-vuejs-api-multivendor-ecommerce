@@ -80,9 +80,9 @@
                                 <li>
                                     <router-link :to="{ name: 'user.orders' }" class="dropdown-item"> My Order</router-link>
                                 </li>
-                                <!-- <li>
+                                <li>
                                     <router-link :to="{ name: 'user.wishlist' }" class="dropdown-item"> My Wishlist</router-link>
-                                </li> -->
+                                </li>
                             </ul>
                         </li>
 
