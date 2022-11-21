@@ -1,3 +1,24 @@
+<script setup>
+    import { reactive } from "@vue/reactivity";
+    import { useAuth } from "@/stores/auth";
+
+
+    const auth = useAuth();
+
+
+    const form = reactive({
+        phone: "",
+        password: "",
+    });
+
+
+    const onSubmit = async () => {
+       await auth.login(form);
+    }
+    
+</script>
+
+
 <template>
     <div>
         <section class="user-form-part">
@@ -10,12 +31,12 @@
                                 <p>Use your credentials to access</p>
                             </div>
                             <div class="user-form-group" id="axiosForm">
-                                <form class="user-form">
+                                <form class="user-form" @submit.prevent="onSubmit">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="phone no"/>
+                                        <input type="text" v-model="form.phone" class="form-control" placeholder="phone no"/>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" placeholder="password"/>
+                                        <input type="password" v-model="form.password" class="form-control" placeholder="password"/>
                                         <span class="view-password">
                                             <i class="fas text-success fa-eye"></i>
                                         </span>
