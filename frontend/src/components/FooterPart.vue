@@ -81,7 +81,7 @@
                         <div class="footer-bottom">
                             <p class="footer-copytext">
                                 &copy; All Copyrights Reserved by
-                                <a target="_blank" href="https://w3coders.net">W3 Coders</a>
+                                <a target="_blank" href="https://w3coders.net">zumonhossain</a>
                             </p>
                             <div class="footer-card">
                                 <a href="#"><img src="@/assets/images/payment/jpg/01.jpg" alt="payment" /></a><a

@@ -1,15 +1,26 @@
 <script setup>
-    import { reactive } from "@vue/reactivity";
+    import { reactive, ref } from "@vue/reactivity";
     import { useAuth } from "@/stores/auth";
-
+    import { storeToRefs } from "pinia";
 
     const auth = useAuth();
+    const { errors } = storeToRefs(auth);
 
 
     const form = reactive({
         phone: "",
         password: "",
     });
+
+
+    // Toggle Show Start
+    const showPassword = ref(false);
+
+    const toggleShow = () => {
+        showPassword.value = !showPassword.value;
+    };
+    // Toggle Show End
+
 
 
     const onSubmit = async () => {
@@ -33,13 +44,17 @@
                             <div class="user-form-group" id="axiosForm">
                                 <form class="user-form" @submit.prevent="onSubmit">
                                     <div class="form-group">
-                                        <input type="text" v-model="form.phone" class="form-control" placeholder="phone no"/>
+                                        <input type="text" v-model="form.phone" class="form-control" placeholder="phone no" :class=" { 'is-invalid' : errors.phone } " />
+                                        <span class="text-danger" v-if="errors.phone">{{ errors.phone[0] }}</span>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" v-model="form.password" class="form-control" placeholder="password"/>
-                                        <span class="view-password">
-                                            <i class="fas text-success fa-eye"></i>
+                                        <input :type="showPassword ? 'text' : 'password' " v-model="form.password" class="form-control" placeholder="password" :class=" { 'is-invalid' : errors.password } " />
+                                        <span class="view-password" @click="toggleShow">
+                                            <i class="fas text-success" :class=" { 'fa-eye-slash' : showPassword, 'fa-eye' : !showPassword } "></i>
                                         </span>
+
+                                        <span class="text-danger" v-if="errors.password">{{ errors.password[0] }}</span>
+
                                     </div>
                                     <div class="form-check mb-3">
                                         <input class="form-check-input" type="checkbox" id="check" value=""/>
