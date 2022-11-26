@@ -1,16 +1,25 @@
 <script setup>
-    import { reactive, ref } from "@vue/reactivity";
+
+    import { reactive, ref } from "vue";
     import { useAuth } from "@/stores/auth";
     import { storeToRefs } from "pinia";
+
+    import { Field, Form } from 'vee-validate';
+    import * as yup from 'yup';
+
+    const schema = yup.object({
+        phone: yup.string().required("Phone field is required"),
+        password: yup.string().required().min(8),
+    });
 
     const auth = useAuth();
     const { errors } = storeToRefs(auth);
 
 
-    const form = reactive({
-        phone: "",
-        password: "",
-    });
+    // const form = reactive({
+    //     phone: "",
+    //     password: "",
+    // });
 
 
     // Toggle Show Start
@@ -23,9 +32,17 @@
 
 
 
-    const onSubmit = async () => {
-       await auth.login(form);
-    }
+    const onSubmit = async (values, { setErrors } ) => {
+        const res = await auth.login(values);
+
+        if(res.data){
+            alert("Login Success");
+        }else{
+            setErrors(res);
+        }
+        
+
+    };
     
 </script>
 
@@ -42,32 +59,39 @@
                                 <p>Use your credentials to access</p>
                             </div>
                             <div class="user-form-group" id="axiosForm">
-                                <form class="user-form" @submit.prevent="onSubmit">
+                                <Form class="user-form" @submit="onSubmit" :validation-schema="schema" v-slot=" { errors, isSubmitting } ">
                                     <div class="form-group">
-                                        <input type="text" v-model="form.phone" class="form-control" placeholder="phone no" :class=" { 'is-invalid' : errors.phone } " />
-                                        <span class="text-danger" v-if="errors.phone">{{ errors.phone[0] }}</span>
+                                        <Field name="phone" type="text" class="form-control" placeholder="phone no" :class=" { 'is-invalid' : errors.phone } " />
+                                        
+                                        <span class="text-danger" v-if="errors.phone">{{ errors.phone }}</span>
+                                        <!-- <ErrorMessage name="phone" class="text-danger" /> -->
                                     </div>
                                     <div class="form-group">
-                                        <input :type="showPassword ? 'text' : 'password' " v-model="form.password" class="form-control" placeholder="password" :class=" { 'is-invalid' : errors.password } " />
+                                        <Field name="password" :type="showPassword ? 'text' : 'password' " class="form-control" placeholder="password" :class=" { 'is-invalid' : errors.password } " />
                                         <span class="view-password" @click="toggleShow">
                                             <i class="fas text-success" :class=" { 'fa-eye-slash' : showPassword, 'fa-eye' : !showPassword } "></i>
                                         </span>
-
-                                        <span class="text-danger" v-if="errors.password">{{ errors.password[0] }}</span>
-
+                                        <span class="text-danger" v-if="errors.password">{{ errors.password }}</span>
+                                        <!-- <ErrorMessage name="password" class="text-danger" /> -->
                                     </div>
                                     <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" id="check" value=""/>
+                                        <Field name="remember" class="form-check-input" type="checkbox" id="check" value=""/>
                                         <label class="form-check-label" for="check">Remember Me</label>
                                     </div>
                                     <div class="form-button">
-                                        <button type="submit">login</button>
+                                        <button type="submit" :disabled="isSubmitting">
+                                            login
+
+                                            <span v-show="isSubmitting" class="spinner-border spinner-border-sm mr-1"></span>
+
+                                        </button>
+                                        
                                         <p>
                                             Forgot your password?
                                             <a href="reset-password.html">reset here</a>
                                         </p>
                                     </div>
-                                </form>
+                                </Form>
                             </div>
                         </div>
                         <div class="user-form-remind">
