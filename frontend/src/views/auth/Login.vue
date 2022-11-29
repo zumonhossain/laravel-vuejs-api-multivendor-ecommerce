@@ -4,12 +4,16 @@
     import { useAuth } from "@/stores/auth";
     import { storeToRefs } from "pinia";
 
+    import { ElNotification } from 'element-plus'
+
+    import { useRouter } from 'vue-router'
+
     import { Field, Form } from 'vee-validate';
     import * as yup from 'yup';
 
     const schema = yup.object({
         phone: yup.string().required("Phone field is required"),
-        password: yup.string().required().min(8),
+        password: yup.string().required(),
     });
 
     const auth = useAuth();
@@ -31,18 +35,31 @@
     // Toggle Show End
 
 
+    const router = useRouter();
+
 
     const onSubmit = async (values, { setErrors } ) => {
         const res = await auth.login(values);
 
         if(res.data){
-            alert("Login Success");
+            router.push({ 
+                name: "index.page"
+            });
+
+            ElNotification({
+                title: 'Success',
+                message: 'Login Success',
+                type: 'success',
+                position: 'top-left',
+            });
+
         }else{
             setErrors(res);
         }
         
 
     };
+    
     
 </script>
 
