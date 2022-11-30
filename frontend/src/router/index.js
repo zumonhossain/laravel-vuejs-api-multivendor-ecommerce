@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useAuth } from "@/stores";
 import { Index, Shop, SingleProduct, Checkout } from "@/views/pages";
 import { SellerPage, SellerStore, SellerApply } from "@/views/pages/seller";
 import { UserLogin, UserRegister } from "@/views/auth";
@@ -61,35 +62,35 @@ const routes = [
       path: "/auth/login",
       name:"user.login", 
       component: UserLogin,
-      meta: { title: "Login" },
+      meta: { title: "Login", guest: true },
     },
 
     { 
       path: "/auth/register", 
       name:"user.register", 
       component: UserRegister,
-      meta: { title: "Register" },
+      meta: { title: "Register", guest: true },
     },
 
     { 
       path: "/my/profile", 
       name:"user.profile", 
       component: MyProfile,
-      meta: { title: "Profile" },
+      meta: { title: "Profile", requiresAuth: true },
     },
 
     { 
       path: "/my/orders", 
       name:"user.orders", 
       component: MyOrderList,
-      meta: { title: "Orders" },
+      meta: { title: "Orders", requiresAuth: true },
     },
 
     { 
       path: "/my/wishlist", 
       name:"user.wishlist", 
       component: MyWishlist,
-      meta: { title: "Wishlist" },
+      meta: { title: "Wishlist", requiresAuth: true },
     },
 
 ];
@@ -105,7 +106,29 @@ const DEFAULT_TITLE = "404";
 router.beforeEach((to, from, next) => {
 
   document.title = to.meta.title || DEFAULT_TITLE;
-  next();
+
+
+  const loggedIn = useAuth();
+
+  if(to.matched.some((record) => record.meta.requiresAuth)){
+    if(!loggedIn.user.meta){
+      next({ name: "user.login" });
+    }else{
+      next();
+    }
+  }
+  else if(to.matched.some((record) => record.meta.guest)){
+    if(loggedIn.user.meta){
+      next({ name: "user.profile" });
+    }else{
+      next();
+    }
+  }
+  else{
+    next();
+  }
+
+  
 
 });
 

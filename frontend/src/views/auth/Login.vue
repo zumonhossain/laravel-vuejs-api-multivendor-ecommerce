@@ -80,7 +80,7 @@
                                     <div class="form-group">
                                         <Field name="phone" type="text" class="form-control" placeholder="phone no" :class=" { 'is-invalid' : errors.phone } " />
                                         
-                                        <span class="text-danger" v-if="errors.phone">{{ errors.phone }}</span>
+                                        <span class="text-danger">{{ errors.phone }}</span>
                                         <!-- <ErrorMessage name="phone" class="text-danger" /> -->
                                     </div>
                                     <div class="form-group">
@@ -88,7 +88,7 @@
                                         <span class="view-password" @click="toggleShow">
                                             <i class="fas text-success" :class=" { 'fa-eye-slash' : showPassword, 'fa-eye' : !showPassword } "></i>
                                         </span>
-                                        <span class="text-danger" v-if="errors.password">{{ errors.password }}</span>
+                                        <span class="text-danger">{{ errors.password }}</span>
                                         <!-- <ErrorMessage name="password" class="text-danger" /> -->
                                     </div>
                                     <div class="form-check mb-3">
