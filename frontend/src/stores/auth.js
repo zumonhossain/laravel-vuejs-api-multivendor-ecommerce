@@ -17,7 +17,6 @@ export const useAuth = defineStore('auth', {
     actions: {
         async login(formData){
             
-            
             try {
                 const res = await axios.post(import.meta.env.VITE_API_URL + "/api/v1/user/login", formData );
 
@@ -42,6 +41,13 @@ export const useAuth = defineStore('auth', {
                 }
             }
         },
+
+
+        async logout(){
+            
+        },
+
+
     },
 });
 
