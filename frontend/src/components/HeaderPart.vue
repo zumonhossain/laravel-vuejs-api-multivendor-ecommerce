@@ -2,9 +2,26 @@
 
     import { useAuth } from "@/stores";
     import { storeToRefs } from "pinia";
-    const { user } = storeToRefs(useAuth());
+    import { ElNotification } from "element-plus";
+    import { useRouter } from "vue-router";
 
+    const auth = useAuth();
+    const { user, loading } = storeToRefs(auth);
+    const router = useRouter();
+    
+    const userLogout = async () => {
+        const res = await auth.logout();
 
+        if (res.status) {
+            router.push({ name: "index.page" });
+            ElNotification({
+                title: "Success",
+                message: "Logout Success",
+                type: "success",
+                position: "top-left",
+            });
+        }
+    };
 
     function search(){
         $(".header-form").toggleClass("active"),
@@ -96,7 +113,7 @@
                                     <router-link :to="{ name: 'user.wishlist' }" class="dropdown-item"> My Wishlist</router-link>
                                 </li>
                                 <li>
-                                    <button class="dropdown-item">
+                                    <button :disabled="loading" class="dropdown-item" @click="userLogout">
                                         Logout <span v-show="loading" class="spinner-border spinner-border-sm mr-1"></span>
                                     </button>
                                 </li>

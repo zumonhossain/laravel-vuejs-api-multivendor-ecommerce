@@ -1,8 +1,7 @@
 <script setup>
 
-    import { reactive, ref } from "vue";
+    import { ref } from "vue";
     import { useAuth } from "@/stores/auth";
-    import { storeToRefs } from "pinia";
 
     import { ElNotification } from 'element-plus'
 
@@ -17,14 +16,6 @@
     });
 
     const auth = useAuth();
-    const { errors } = storeToRefs(auth);
-
-
-    // const form = reactive({
-    //     phone: "",
-    //     password: "",
-    // });
-
 
     // Toggle Show Start
     const showPassword = ref(false);
